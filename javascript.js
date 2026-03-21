@@ -80,5 +80,36 @@ const Gameboard = (function () {
         }
     }
 
-    return {show, update, victory, clear}
+    function validate(vertical_position, horizontal_position) {
+        if (state[vertical_position][horizontal_position] == 0) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    return {show, update, victory, clear, validate}
 })()
+
+// valid move check: if Gameboard state shows a 0, it is a valid move
+// *to-do: add function validate into Gameboard
+// function validate(vertical pos, horizontal pos) {
+// return true if slot contains 0
+// return false if else
+// }
+
+// Game:
+// set player
+// foreach(button => etc)
+// on-click: validate move, update gameboard, show svg, check victory, change player
+//
+/*function handleEvent(player) {
+
+}
+
+const player = 1;
+const boxes = document.querySelectorAll('.box')
+boxes.forEach(box => {
+    box.addEventListener("click", handleEvent)
+});
+*/
