@@ -106,7 +106,7 @@ const Gameboard = (function () {
 // how to incorporate position finding? - slightly cheated with chatGPT .dataset attribute
 
 // initiallizing starting player
-const player = 1;
+let player = 1;
 
 // dictionary
 // usage: 
@@ -137,5 +137,45 @@ function handleEvent(event) {
     const vertical_position = positions[event.target.dataset.position][0]
     const horizontal_position = positions[event.target.dataset.position][1]
     console.log(vertical_position, horizontal_position)
+
+    if (Gameboard.validate(vertical_position, horizontal_position) == false) {
+        return console.log("invalid move")
+    }
+
+    Gameboard.update(vertical_position, horizontal_position, player)
+
+    // show svg
+    if (player == 1) {
+        event.target.querySelector('.x').classList.add('show')
+        console.log(event.target.classList)
+    } else
+    if (player == -1) {
+        event.target.querySelector('.o').classList.add('show')
+        console.log(event.target.classList)
+    }
+
+    function checkVictoryInTurn() {
+    if (Gameboard.victory() == 1) {
+        return window.alert("player 1 wins")
+    } else
+    if (Gameboard.victory() == -1) {
+        return window.alert("player 2 wins")
+    } else
+    if (Gameboard.victory() === 0) {
+        return window.alert("tie")
+    }}
+
+    setTimeout(checkVictoryInTurn, 10)
+
+    switchPlayers()
 }
 
+// switch players
+function switchPlayers() {
+    if (player == 1) {
+        player = -1;
+    } else
+    if (player == -1) {
+        player = 1;
+    }
+}
