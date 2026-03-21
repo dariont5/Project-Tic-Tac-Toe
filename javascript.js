@@ -102,14 +102,40 @@ const Gameboard = (function () {
 // set player
 // foreach(button => etc)
 // on-click: validate move, update gameboard, show svg, check victory, change player
-//
-/*function handleEvent(player) {
+// validate done
+// how to incorporate position finding? - slightly cheated with chatGPT .dataset attribute
 
+// initiallizing starting player
+const player = 1;
+
+// dictionary
+// usage: 
+// positions[index] returns array
+// positions[index][0] returns vertical postion
+// positions[index][1] returns horizontal postion
+const positions = {
+    0: [0, 0],
+    1: [0, 1],
+    2: [0, 2],
+    3: [1, 0],
+    4: [1, 1],
+    5: [1, 2],
+    6: [2, 0],
+    7: [2, 1],
+    8: [2, 2],
 }
 
-const player = 1;
+// assign positions of each box and add event handler
 const boxes = document.querySelectorAll('.box')
-boxes.forEach(box => {
+boxes.forEach((box, index) => {
+    box.dataset.position = index;
     box.addEventListener("click", handleEvent)
 });
-*/
+
+// validates move, updates move, shows svg, checks victory, changes player
+function handleEvent(event) {
+    const vertical_position = positions[event.target.dataset.position][0]
+    const horizontal_position = positions[event.target.dataset.position][1]
+    console.log(vertical_position, horizontal_position)
+}
+
