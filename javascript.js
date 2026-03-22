@@ -217,7 +217,8 @@ function endGame() {
 let restartButton = document.querySelector('.restart');
 restartButton.addEventListener('click', () => {
     Gameboard.clear()
-    boxes.forEach((box) => box.classList.remove("show"))
+    boxes.forEach((box) => box.querySelector('.x').classList.remove("show"))
+    boxes.forEach((box) => box.querySelector('.o').classList.remove("show"))
     victoryDisplay.value = ""
     player = 1
     onGoing = true
