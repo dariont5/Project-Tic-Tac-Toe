@@ -211,3 +211,14 @@ function switchPlayers() {
 function endGame() {
     onGoing = false;
 }
+
+// handle game restart
+// clear board, clear svg, reset initial player, set onGoing = true
+let restartButton = document.querySelector('.restart');
+restartButton.addEventListener('click', () => {
+    Gameboard.clear()
+    boxes.forEach((box) => box.classList.remove("show"))
+    victoryDisplay.value = ""
+    player = 1
+    onGoing = true
+});
