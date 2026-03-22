@@ -105,8 +105,9 @@ const Gameboard = (function () {
 // validate done
 // how to incorporate position finding? - slightly cheated with chatGPT .dataset attribute
 
-// initiallizing starting player
+// initiallizing required variables
 let player = 1;
+let onGoing = true
 
 // dictionary
 // usage: 
@@ -138,6 +139,10 @@ function handleEvent(event) {
     const horizontal_position = positions[event.target.dataset.position][1]
     console.log(vertical_position, horizontal_position)
 
+    if (onGoing === false) {
+        return console.log("The game is over");
+    }
+
     if (Gameboard.validate(vertical_position, horizontal_position) == false) {
         return console.log("invalid move")
     }
@@ -156,12 +161,15 @@ function handleEvent(event) {
 
     function checkVictoryInTurn() {
     if (Gameboard.victory() == 1) {
+        endGame()
         return window.alert("player 1 wins")
     } else
     if (Gameboard.victory() == -1) {
+        endGame()
         return window.alert("player 2 wins")
     } else
     if (Gameboard.victory() === 0) {
+        endGame()
         return window.alert("tie")
     }}
 
@@ -178,4 +186,9 @@ function switchPlayers() {
     if (player == -1) {
         player = 1;
     }
+}
+
+// handle the game ending
+function endGame() {
+    onGoing = false;
 }
