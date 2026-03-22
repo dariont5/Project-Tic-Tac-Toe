@@ -109,6 +109,11 @@ const Gameboard = (function () {
 let player = 1;
 let onGoing = true
 
+// inputs
+let player1 = document.querySelector('.player1');
+let player2 = document.querySelector('.player2');
+let victoryDisplay = document.querySelector('#winner');
+
 // dictionary
 // usage: 
 // positions[index] returns array
@@ -162,15 +167,29 @@ function handleEvent(event) {
     function checkVictoryInTurn() {
     if (Gameboard.victory() == 1) {
         endGame()
-        return window.alert("player 1 wins")
+        let victor = player1.value
+        if (victor === "") {
+            victoryDisplay.value = "Player1"
+            return console.log(victor)
+        }
+        victoryDisplay.value = `${victor}`
+        return console.log(victor)
     } else
     if (Gameboard.victory() == -1) {
         endGame()
-        return window.alert("player 2 wins")
+        let victor = player2.value
+        if (victor === "") {
+            victoryDisplay.value = "Player2"
+            return console.log(victor)
+        }
+        victoryDisplay.value = `${victor}`
+        return console.log(victor)
     } else
     if (Gameboard.victory() === 0) {
         endGame()
-        return window.alert("tie")
+        let victor = "Tie"
+        victoryDisplay.value = `${victor}`
+        return console.log(victor)
     }}
 
     setTimeout(checkVictoryInTurn, 10)
